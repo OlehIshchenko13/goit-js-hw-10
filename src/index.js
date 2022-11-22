@@ -22,6 +22,15 @@ function onInput(e) {
 		.then(countries => {
 			clearInfo();
 
+
+            if (!countries) {
+				throw new Error();
+			}
+			if (countryName === '') {
+				return;
+			}
+
+
 			if (countries.length > 10) {
 				return Notiflix.Notify.info(`Too many matches found. Please enter a more specific name.`, { position: "center-top" })
 			}
@@ -32,13 +41,7 @@ function onInput(e) {
 				return;
 			}
 
-			if (!countries) {
-				throw new Error();
-			}
-			if (countryName === '') {
-				return;
-			}
-
+			
 			renderCountryInfo(countries)
 
 		})
